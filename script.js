@@ -16,6 +16,7 @@ const config = [
 function createCard(project) {}
 
 function populate() {
+  main = document.getElementsByTagName('main')[0];
   config.forEach((project) => {
     const link = document.createElement('a');
     link.href = `/${project.path}`;
@@ -32,6 +33,6 @@ function populate() {
     card.appendChild(title);
     card.appendChild(desc);
     link.appendChild(card);
-    document.body.appendChild(link);
+    main.appendChild(link);
   });
 }
