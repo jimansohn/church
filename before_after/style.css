@@ -1,0 +1,40 @@
+body{
+    font-family: 'Amiko';
+    color: white;
+    font-size:5vw;
+}
+.position_container{
+    position: absolute;
+    width:100vw;
+    height:100vh;
+}
+.display_container{
+    display:table;
+    position: absolute;
+    width: 80vw;
+    height: 80vh;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 10vh;
+}
+.content{
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+#question_display{
+    background-color: #ffdb4d;
+}
+#answer_display{
+    background-color: #85e085;
+}
+.emphasis{
+font-size:6vw;
+display:inline;
+font-weight:bold;
+}
+
+
+
