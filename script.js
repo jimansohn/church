@@ -27,7 +27,7 @@ function populate() {
     const title = document.createElement('h2');
     title.innerText = project.name;
 
-    const desc = document.createElement('p');
+    const desc = document.createElement('h5');
     desc.innerText = project.description;
 
     card.appendChild(title);
