@@ -6,7 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    Coming Soon
+  <body onload="populate()">
+    <header></header>
+    <form onsubmit="addNameTag()">
+      <ul>
+        <li id="name-inputs">
+          <label for="name"><h3>Name :</h3></label>
+          <input type="text" name="attendee-name" id="name" />
+        </li>
+        <li id="church-inputs">
+          <h3>Church</h3>
+          <ul id="church-radios"></ul>
+        </li>
+        <li id="group-inputs">
+          <h3>Group</h3>
+          <ul id="group-radios"></ul>
+        </li>
+      </ul>
+    </form>
+    <ul id="name-list"></ul>
+    <script type="text/javascript" src="nametag.js"></script>
   </body>
 </html>
