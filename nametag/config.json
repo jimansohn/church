@@ -1,11 +1,11 @@
 {
-  "groups": [
-    ["FATHERS GROUP", "bg/fathers.png"],
-    ["MOTHERS GROUP", "bg/mothers.png"],
-    ["YOUNG ADULT", "bg/ya.png"],
-    ["CHURCH SCHOOL", "bg/school.png"],
-    ["TEACHERS", "bg/teachers.png"],
-    ["PASTOR", "bg/pastors.png"]
-  ],
-  "CHURCHES": ["CENTRAL", "CORONA", "LAS VEGAS", "LOS ANGELES", "SACRAMENTO"]
+  "groups": {
+    "FATHERS GROUP": "bg/fathers.png",
+    "MOTHERS GROUP": "bg/mothers.png",
+    "YOUNG ADULT": "bg/ya.png",
+    "CHURCH SCHOOL": "bg/school.png",
+    "TEACHER": "bg/teachers.png",
+    "PASTOR": "bg/pastors.png]"
+  },
+  "churches": ["CENTRAL", "CORONA", "LAS VEGAS", "LOS ANGELES", "SACRAMENTO"]
 }

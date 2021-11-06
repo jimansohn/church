@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body onload="populate()">
+  <body onload="initialize()">
     <header></header>
-    <form onsubmit="addNameTag()">
+    <form onsubmit="submitNameTag(event)">
       <ul>
         <li id="name-inputs">
           <label for="name"><h3>Name :</h3></label>
-          <input type="text" name="attendee-name" id="name" />
+          <input type="text" name="name" id="name" required />
         </li>
         <li id="church-inputs">
           <h3>Church</h3>
@@ -23,8 +23,12 @@
           <ul id="group-radios"></ul>
         </li>
       </ul>
+      <li id="submit">
+        <input type="submit" value="Submit" />
+      </li>
     </form>
     <ul id="name-list"></ul>
+    <ul id="printed-list"></ul>
     <script type="text/javascript" src="nametag.js"></script>
   </body>
 </html>
