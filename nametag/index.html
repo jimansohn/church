@@ -5,13 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body onload="initialize()">
-    <header></header>
-    <form onsubmit="submitNameTag(event)">
-      <ul>
+    <header>
+      <h1>JBUSA Nametag PDF Maker</h1>
+    </header>
+
+    <form onsubmit="onSubmitNameTag(event)">
+      <ul id="form-list">
         <li id="name-inputs">
-          <label for="name"><h3>Name :</h3></label>
+          <h3>Name :</h3>
           <input type="text" name="name" id="name" required />
         </li>
         <li id="church-inputs">
@@ -22,13 +32,36 @@
           <h3>Group</h3>
           <ul id="group-radios"></ul>
         </li>
+        <li id="submit">
+          <button type="submit">Submit</button>
+        </li>
       </ul>
-      <li id="submit">
-        <input type="submit" value="Submit" />
-      </li>
     </form>
-    <ul id="name-list"></ul>
-    <ul id="printed-list"></ul>
+
+    <div id="name-list-label" class="list">
+      <ul>
+        <li>✓</li>
+        <li>Name</li>
+        <li>Church</li>
+        <li>Group</li>
+        <li>Delete</li>
+        <li>Print</li>
+      </ul>
+    </div>
+    <div id="name-list" class="main list"></div>
+    <div id="name-list-control">
+      <button id="delete-all">Delete All</button>
+      <button id="print-all">Print All</button>
+      <button onclick="generateNametagsPDF()">Download</button>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"
+      integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script type="text/javascript" src="nametag.js"></script>
+    <script type="text/javascript" src="index.js"></script>
   </body>
 </html>

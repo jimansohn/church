@@ -1,0 +1,95 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+button {
+  padding: 5px;
+  width: 100px;
+}
+
+ul :nth-child(n) {
+  margin: 2px;
+}
+#name {
+  height: 2em;
+}
+
+.list > ul {
+  display: grid;
+  grid-template-columns: 30px 1fr 1fr 1fr 100px;
+  height: 30px;
+  width: 800px;
+}
+
+.list > ul :nth-child(n) {
+  margin: auto 10px;
+}
+.main.list :nth-child(odd):not(li) {
+  background-color: lightsteelblue;
+}
+
+#form-list {
+  margin: 10px 10px;
+  width: 780px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 0.5fr;
+}
+
+header {
+  margin: 10px 10px;
+}
+
+#page {
+  padding: 169px 95px;
+}
+.card {
+  width: 221px;
+  height: 360px;
+  padding: 0;
+}
+
+.card > img {
+  width: 221px;
+  height: 360px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+.card > div {
+  width: 221px;
+  height: 201px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  z-index: 1;
+  margin-top: 60px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card > div > div {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card > div > div > h2 {
+  font-size: 2em;
+  font-weight: 700;
+}
