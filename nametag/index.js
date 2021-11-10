@@ -1,11 +1,20 @@
-let groups, groupKeys, churches, nameArray;
+let groups,
+  groupKeys,
+  groupLabels,
+  groupPaths,
+  groupMatches,
+  churches,
+  churchKeys,
+  churchLabels,
+  churchMatches,
+  nameArray;
 
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
 const churchRadios = document.getElementById('church-radios');
 const groupRadios = document.getElementById('group-radios');
 const nameList = document.getElementById('name-list');
-const printedList = document.getElementById('printed-list');
+const fileSelector = document.getElementById('file-selector');
 
 const NAME_LS_KEY = 'namelist';
 const PRINTED_LS_KEY = 'printedlist';
@@ -13,12 +22,20 @@ const PRINTED_LS_KEY = 'printedlist';
 async function initialize() {
   const configFile = await fetch('./config.json');
   const config = await configFile.json();
+
+  churches = Object.values(config.churches);
+
   groups = config.groups;
   groupKeys = Object.keys(groups);
-  churches = config.churches;
+  groupLabels = groupKeys.map((key) => {
+    return groups[key].label;
+  });
+  groupPaths = groupKeys.map((key) => {
+    return groups[key].path;
+  });
 
   initializeRadios(churchRadios, churches, 'church');
-  initializeRadios(groupRadios, Object.keys(groups), 'group');
+  initializeRadios(groupRadios, groupLabels, 'group');
 
   const loadedNames = localStorage.getItem(NAME_LS_KEY);
   if (loadedNames != null) {
@@ -27,6 +44,10 @@ async function initialize() {
   } else {
     nameArray = [];
   }
+
+  fileSelector.addEventListener('change', (event) => {
+    whenUploaded(event);
+  });
 
   firstname.focus();
 }
@@ -62,8 +83,8 @@ function gatherFormInfo() {
     firstname: firstname.value,
     lastname: lastname.value,
     church: churches[form.elements['church'].value],
-    group: groupKeys[groupIndex],
-    bgpath: groups[groupKeys[groupIndex]],
+    group: groupLabels[groupIndex],
+    bgpath: groupPaths[groupIndex],
   };
 
   return info;
@@ -72,16 +93,39 @@ function gatherFormInfo() {
 function onSubmitNameTag(event) {
   event.preventDefault();
 
-  console.log(groups);
-
   nameArray.push(gatherFormInfo());
 
   updateNameListDisplay();
 
-  localStorage.setItem(NAME_LS_KEY, JSON.stringify(nameArray));
   firstname.value = '';
   lastname.value = '';
   firstname.focus();
+}
+
+function onUpload() {
+  fileSelector.click();
+}
+
+function whenUploaded(event) {
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const uploadedArray = csvToArray(event.target.result);
+      nameArray = nameArray.concat(uploadedArray);
+      updateNameListDisplay();
+    };
+    reader.readAsText(file);
+  }
+  event.target.value = null;
+}
+
+function onDelete(event) {
+  const button = event.target;
+  const ul = button.parentElement;
+  const index = parseInt(ul.id.slice(3));
+  nameArray.splice(index, 1);
+  updateNameListDisplay();
 }
 
 function onDeleteAll() {
@@ -95,20 +139,22 @@ function onPrintAll() {
 }
 
 function updateNameListDisplay() {
+  localStorage.setItem(NAME_LS_KEY, JSON.stringify(nameArray));
+
   while (nameList.firstChild) {
     nameList.removeChild(nameList.firstChild);
   }
-  nameArray.forEach((element) => {
-    nameList.append(createInfoListItem(element));
+  nameArray.forEach((element, index) => {
+    nameList.append(createInfoListItem(index, element));
   });
 }
 
-function createInfoListItem(info) {
+function createInfoListItem(index, info) {
   const listItem = document.createElement('ul');
-  listItem.id = info.id;
+  listItem.id = `row${index}`;
 
-  const check = document.createElement('input');
-  check.type = 'checkbox';
+  const number = document.createElement('li');
+  number.innerText = index + 1;
 
   const name = document.createElement('li');
   name.class = 'name';
@@ -122,10 +168,18 @@ function createInfoListItem(info) {
   group.class = 'group';
   group.innerHTML = info.group;
 
-  listItem.appendChild(check);
+  const deleteButton = document.createElement('button');
+  deleteButton.innerText = 'Delete';
+  deleteButton.classList.add('delete');
+  deleteButton.addEventListener('click', (event) => {
+    onDelete(event);
+  });
+
+  listItem.appendChild(number);
   listItem.appendChild(name);
   listItem.appendChild(church);
   listItem.appendChild(group);
+  listItem.appendChild(deleteButton);
 
   return listItem;
 }

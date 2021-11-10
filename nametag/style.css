@@ -37,6 +37,7 @@ button {
 
 input[type='text'] {
   height: 2em;
+  padding-left: 5px;
 }
 
 #firstname-input {
@@ -81,7 +82,7 @@ label {
 
 .list > ul {
   display: grid;
-  grid-template-columns: 30px 2fr 1fr 1fr 100px;
+  grid-template-columns: 50px 2fr 1fr 1fr 100px;
   height: 30px;
   width: 800px;
 }
@@ -89,8 +90,21 @@ label {
 .list > ul :nth-child(n) {
   margin: auto 10px;
 }
-.main.list :nth-child(odd):not(li) {
+.main.list :nth-child(odd):not(li, button) {
   background-color: #b2c5db;
+}
+
+.delete {
+  height: 20px;
+  width: 60px;
+  font-size: 0.8em;
+  background-color: #6287b4;
+  padding: 0;
+}
+
+.notice {
+  margin-top: 15px;
+  color: rgb(255, 59, 59);
 }
 
 .page {

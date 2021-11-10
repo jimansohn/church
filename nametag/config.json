@@ -1,11 +1,35 @@
 {
   "groups": {
-    "FATHERS GROUP": "bg/fathers.png",
-    "MOTHERS GROUP": "bg/mothers.png",
-    "YOUNG ADULT": "bg/ya.png",
-    "CHURCH SCHOOL": "bg/school.png",
-    "TEACHER": "bg/pastors.png",
-    "PASTOR": "bg/pastors.png"
+    "fathers": {
+      "label": "FATHERS GROUP",
+      "path": "bg/fathers.png"
+    },
+    "mothers": {
+      "label": "MOTHERS GROUP",
+      "path": "bg/mothers.png"
+    },
+    "young": {
+      "label": "YOUNG ADULT",
+      "path": "bg/ya.png"
+    },
+    "school": {
+      "label": "CHURCH SCHOOL",
+      "path": "bg/school.png"
+    },
+    "teachers": {
+      "label": "TEACHER",
+      "path": "bg/pastors.png"
+    },
+    "pastor": {
+      "label": "PASTOR",
+      "path": "bg/pastors.png"
+    }
   },
-  "churches": ["CENTRAL", "CORONA", "LAS VEGAS", "LOS ANGELES", "SACRAMENTO"]
+  "churches": {
+    "cc": "CENTRAL",
+    "co": "CORONA",
+    "lv": "LAS VEGAS",
+    "lo": "LOS ANGELES",
+    "sac": "SACRAMENTO"
+  }
 }

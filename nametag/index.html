@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Nametag Maker</title>
     <link
       rel="icon"
       href="https://jimansohn.github.io/church/nametag/favicon.ico"
@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>NametagMaker - Ji Man Sohn</title>
   </head>
   <body onload="initialize()">
     <header>
@@ -48,7 +49,7 @@
     <div class="container">
       <div id="name-list-label" class="list label">
         <ul>
-          <li>✓</li>
+          <li>#</li>
           <li>Name</li>
           <li>Church</li>
           <li>Group</li>
@@ -59,10 +60,12 @@
       <div id="name-list-control">
         <input type="file" id="file-selector" hidden />
         <button id="upload" onclick="onUpload()">Upload CSV</button>
-        <button id="delete-selected">Delete Selected</button>
-        <button id="print-selected">Print Selected</button>
         <button id="delete-all" onclick="onDeleteAll()">Delete All</button>
         <button id="print-all" onclick="onPrintAll()">Print All</button>
+      </div>
+      <div class="notice">
+        * Due to the file size issue, you can only create a pdf with MAXIMUM 32
+        name tags each time.
       </div>
     </div>
 
@@ -72,6 +75,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script type="text/javascript" src="csvloader.js"></script>
     <script type="text/javascript" src="nametag.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </body>

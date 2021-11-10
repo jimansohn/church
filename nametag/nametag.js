@@ -22,9 +22,6 @@ function generateNametagsPDF(infos) {
     file.appendChild(generateFrontPage(infos.splice(0, 8)));
     file.appendChild(generateBackPage());
   }
-
-  console.log(file);
-
   pdf.set(opt).from(file).save('NameTags.pdf');
 }
 
