@@ -18,17 +18,21 @@
       <h1>JBUSA Nametag PDF Maker</h1>
     </header>
 
-    <form onsubmit="onSubmitNameTag(event)">
+    <form onsubmit="onSubmitNameTag(event)" class="container">
       <ul id="form-list">
-        <li id="name-inputs">
-          <h3>Name :</h3>
-          <input type="text" name="name" id="name" required />
+        <li id="firstname-input">
+          <h3>First Name</h3>
+          <input type="text" name="firstname" id="firstname" required />
         </li>
-        <li id="church-inputs">
+        <li id="lastname-input">
+          <h3>Last Name</h3>
+          <input type="text" name="lastname" id="lastname" required />
+        </li>
+        <li id="church-input">
           <h3>Church</h3>
           <ul id="church-radios"></ul>
         </li>
-        <li id="group-inputs">
+        <li id="group-input">
           <h3>Group</h3>
           <ul id="group-radios"></ul>
         </li>
@@ -37,22 +41,24 @@
         </li>
       </ul>
     </form>
-
-    <div id="name-list-label" class="list">
-      <ul>
-        <li>✓</li>
-        <li>Name</li>
-        <li>Church</li>
-        <li>Group</li>
-        <li>Delete</li>
-        <li>Print</li>
-      </ul>
-    </div>
-    <div id="name-list" class="main list"></div>
-    <div id="name-list-control">
-      <button id="delete-all">Delete All</button>
-      <button id="print-all">Print All</button>
-      <button onclick="generateNametagsPDF()">Download</button>
+    <div class="container">
+      <div id="name-list-label" class="list label">
+        <ul>
+          <li>✓</li>
+          <li>Name</li>
+          <li>Church</li>
+          <li>Group</li>
+          <li>Delete</li>
+        </ul>
+      </div>
+      <div id="name-list" class="main list"></div>
+      <div id="name-list-control">
+        <button id="delete-selected">Delete Selected</button>
+        <button id="print-selected">Print Selected</button>
+        <button id="delete-all" onclick="onDeleteAll()">Delete All</button>
+        <button id="print-all" onclick="onPrintAll()">Print All</button>
+        <button onclick="generateNametagsPDF()">Download</button>
+      </div>
     </div>
 
     <script

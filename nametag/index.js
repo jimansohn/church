@@ -1,6 +1,7 @@
 let groups, groupKeys, churches, nameArray;
 
-const nameField = document.getElementById('name');
+const firstname = document.getElementById('firstname');
+const lastname = document.getElementById('lastname');
 const churchRadios = document.getElementById('church-radios');
 const groupRadios = document.getElementById('group-radios');
 const nameList = document.getElementById('name-list');
@@ -22,23 +23,12 @@ async function initialize() {
   const loadedNames = localStorage.getItem(NAME_LS_KEY);
   if (loadedNames != null) {
     nameArray = JSON.parse(loadedNames);
-    updateNameList();
+    updateNameListDisplay();
   } else {
     nameArray = [];
   }
 
-  const deleteAll = document.getElementById('delete-all');
-  deleteAll.addEventListener('click', function () {
-    nameArray = [];
-    updateNameList();
-  });
-
-  const clearAll = document.getElementById('clear-all');
-  deleteAll.addEventListener('click', function () {
-    removeAllList(printedList, printedMap, PRINTED_LS_KEY);
-  });
-
-  nameField.focus();
+  firstname.focus();
 }
 
 function initializeRadios(parent, list, name) {
@@ -64,44 +54,47 @@ function initializeRadios(parent, list, name) {
 }
 
 function gatherFormInfo() {
-  let name, church, group;
-
   const form = document.forms[0];
 
-  const nameInput = form.elements['name'];
-  name = nameInput.value;
-
-  const churchIndex = form.elements['church'].value;
-  church = churches[churchIndex];
-
   const groupIndex = form.elements['group'].value;
-  group = groupKeys[groupIndex];
+  const info = {
+    id: Date.now(),
+    firstname: firstname.value,
+    lastname: lastname.value,
+    church: churches[form.elements['church'].value],
+    group: groupKeys[groupIndex],
+    bgpath: groups[groupKeys[groupIndex]],
+  };
 
-  const info = { id: Date.now(), name: name, church: church, group: group };
   return info;
 }
 
 function onSubmitNameTag(event) {
   event.preventDefault();
 
+  console.log(groups);
+
   nameArray.push(gatherFormInfo());
-  updateNameList();
+
+  updateNameListDisplay();
 
   localStorage.setItem(NAME_LS_KEY, JSON.stringify(nameArray));
-  // updateListToLocalStorage(nameList, NAME_LS_KEY);
-  nameField.value = '';
-  nameField.focus();
+  firstname.value = '';
+  lastname.value = '';
+  firstname.focus();
 }
 
 function onDeleteAll() {
-  removeAllList(nameList, nameArray, NAME_LS_KEY);
+  nameArray = [];
+  localStorage.setItem(NAME_LS_KEY, JSON.stringify(nameArray));
+  updateNameListDisplay();
 }
 
-function onClear() {
-  removeAllList(printedList, printedMap, PRINTED_LS_KEY);
+function onPrintAll() {
+  generateNametagsPDF(nameArray);
 }
 
-function updateNameList() {
+function updateNameListDisplay() {
   while (nameList.firstChild) {
     nameList.removeChild(nameList.firstChild);
   }
@@ -119,7 +112,7 @@ function createInfoListItem(info) {
 
   const name = document.createElement('li');
   name.class = 'name';
-  name.innerText = info.name;
+  name.innerText = `${info.firstname} ${info.lastname}`;
 
   const church = document.createElement('li');
   church.class = 'church';
