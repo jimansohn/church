@@ -1,7 +1,7 @@
 const startingX = 83;
 const startingY = 47;
 
-function generateNametagsPDF(infos) {
+async function generateNametagsPDF(infos) {
   const pdf = html2pdf();
   const opt = {
     jsPDF: {
@@ -22,7 +22,7 @@ function generateNametagsPDF(infos) {
     file.appendChild(generateFrontPage(infos.splice(0, 8)));
     file.appendChild(generateBackPage());
   }
-  pdf.set(opt).from(file).save('NameTags.pdf');
+  await pdf.set(opt).from(file).save('NameTags.pdf');
 }
 
 function generateFrontPage(infos) {

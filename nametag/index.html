@@ -57,18 +57,21 @@
         </ul>
       </div>
       <div id="name-list" class="main list"></div>
-      <div id="name-list-control">
+      <div id="name-list-control-bot">
         <input type="file" id="file-selector" hidden />
         <button id="upload" onclick="onUpload()">Upload CSV</button>
         <button id="delete-all" onclick="onDeleteAll()">Delete All</button>
-        <button id="print-all" onclick="onPrintAll()">Print All</button>
+        <button id="print-max" onclick="onPrintMax()">Print Max</button>
       </div>
       <div class="notice">
         * Due to the file size issue, you can only create a pdf with MAXIMUM 32
         name tags each time.
       </div>
     </div>
-
+    <div id="loading" class="processing container">
+      <div class="processiing loader"></div>
+      <div class="processing text">Processing</div>
+    </div>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"
       integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="

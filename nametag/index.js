@@ -15,6 +15,7 @@ const churchRadios = document.getElementById('church-radios');
 const groupRadios = document.getElementById('group-radios');
 const nameList = document.getElementById('name-list');
 const fileSelector = document.getElementById('file-selector');
+const processing = document.getElementById('loading');
 
 const NAME_LS_KEY = 'namelist';
 const PRINTED_LS_KEY = 'printedlist';
@@ -134,8 +135,11 @@ function onDeleteAll() {
   updateNameListDisplay();
 }
 
-function onPrintAll() {
-  generateNametagsPDF(nameArray);
+async function onPrintMax() {
+  processing.style.display = 'flex';
+  await generateNametagsPDF(nameArray.splice(0, 32));
+  processing.style.display = 'none';
+  updateNameListDisplay();
 }
 
 function updateNameListDisplay() {
