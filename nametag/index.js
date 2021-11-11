@@ -34,7 +34,6 @@ async function initialize() {
 
   initializeRadios(churchRadios, churches, 'church');
   initializeRadios(groupRadios, groupLabels, 'group');
-
   appendOtherChurchRadio();
 
   const loadedNames = localStorage.getItem(NAME_LS_KEY);
@@ -69,9 +68,19 @@ function appendOtherChurchRadio() {
   const otherInput = document.createElement('input');
   otherInput.id = 'church-other';
   otherInput.type = 'text';
+  otherInput.disabled = true;
 
   radio.addEventListener('change', (event) => {
+    otherInput.disabled = false;
     otherInput.focus();
+  });
+
+  churches.forEach((church) => {
+    const churchID = church.replace(' ', '');
+    const element = document.getElementById(churchID);
+    element.addEventListener('change', (event) => {
+      otherInput.disabled = true;
+    });
   });
 
   listItem.appendChild(radio);
