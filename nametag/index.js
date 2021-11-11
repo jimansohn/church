@@ -69,7 +69,6 @@ function appendOtherChurchRadio() {
   const otherInput = document.createElement('input');
   otherInput.id = 'church-other';
   otherInput.type = 'text';
-  otherInput.disabled = true;
 
   radio.addEventListener('change', (event) => {
     otherInput.focus();
