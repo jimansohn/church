@@ -2,12 +2,9 @@ let groups,
   groupKeys,
   groupLabels,
   groupPaths,
-  groupMatches,
   churches,
-  churchKeys,
-  churchLabels,
-  churchMatches,
-  nameArray;
+  nameArray,
+  churchOther;
 
 const firstname = document.getElementById('firstname');
 const lastname = document.getElementById('lastname');
@@ -38,6 +35,8 @@ async function initialize() {
   initializeRadios(churchRadios, churches, 'church');
   initializeRadios(groupRadios, groupLabels, 'group');
 
+  appendOtherChurchRadio();
+
   const loadedNames = localStorage.getItem(NAME_LS_KEY);
   if (loadedNames != null) {
     nameArray = JSON.parse(loadedNames);
@@ -51,6 +50,37 @@ async function initialize() {
   });
 
   firstname.focus();
+}
+
+function appendOtherChurchRadio() {
+  const listItem = document.createElement('li');
+
+  const radio = document.createElement('input');
+  radio.type = 'radio';
+  radio.id = 'others';
+  radio.name = 'church';
+  radio.value = churches.length;
+  radio.required = 'required';
+
+  const label = document.createElement('label');
+  label.htmlFor = radio.id;
+  label.innerText = 'Other:';
+
+  const otherInput = document.createElement('input');
+  otherInput.id = 'church-other';
+  otherInput.type = 'text';
+  otherInput.disabled = true;
+
+  radio.addEventListener('change', (event) => {
+    otherInput.focus();
+  });
+
+  listItem.appendChild(radio);
+  listItem.appendChild(label);
+  listItem.appendChild(otherInput);
+  churchRadios.append(listItem);
+
+  churchOther = document.getElementById('church-other');
 }
 
 function initializeRadios(parent, list, name) {
@@ -77,16 +107,20 @@ function initializeRadios(parent, list, name) {
 
 function gatherFormInfo() {
   const form = document.forms[0];
-
   const groupIndex = form.elements['group'].value;
+  const churchIndex = form.elements['church'].value;
   const info = {
     id: Date.now(),
     firstname: firstname.value,
     lastname: lastname.value,
-    church: churches[form.elements['church'].value],
     group: groupLabels[groupIndex],
     bgpath: groupPaths[groupIndex],
+    church: churches[churchIndex],
   };
+
+  if (churchIndex == churches.length) {
+    info['church'] = churchOther.value.toUpperCase();
+  }
 
   return info;
 }
