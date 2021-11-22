@@ -176,8 +176,8 @@ label {
 }
 
 .page {
-  width: 1056px;
-  height: 816px;
+  width: 816px;
+  height: 1056px;
   display: block;
   position: relative;
 }
@@ -185,7 +185,7 @@ label {
 .grid {
   display: grid;
   grid-template-columns: 384px 384px;
-  grid-template-rows: 288px 288px;
+  grid-template-rows: 288px 288px 288px;
   gap: 0px;
   position: absolute;
 }

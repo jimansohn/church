@@ -1,4 +1,4 @@
-const startingX = 48;
+const startingX = 24;
 const startingY = 96;
 
 async function generateNametagsPDF(infos) {
@@ -12,7 +12,7 @@ async function generateNametagsPDF(infos) {
       hotfixes: ['px_scaling'],
     },
     html2canvas: {
-      scale: 8,
+      scale: 6,
     },
   };
 
@@ -20,7 +20,7 @@ async function generateNametagsPDF(infos) {
   file.className = 'pdf file';
 
   while (infos.length > 0) {
-    file.appendChild(generateFrontPage(infos.splice(0, 4)));
+    file.appendChild(generateFrontPage(infos.splice(0, 6)));
   }
   await pdf.set(opt).from(file).save('NameTags.pdf');
 }
@@ -46,7 +46,6 @@ function generateFrontPage(infos) {
 }
 
 function generateSingleTag(info) {
-  console.log(info);
   const div = document.createElement('div');
   div.className = 'card container';
 

@@ -1,4 +1,4 @@
-let lodges, lodgesMap, churches, nameArray, churchOther;
+let lodges, lodgesMap, churches, nameArray, churchOther, config;
 
 const name1 = document.getElementById('name1');
 const name2 = document.getElementById('name2');
@@ -13,7 +13,7 @@ const NAME_LS_KEY = 'infolist';
 
 async function initialize() {
   const configFile = await fetch('./config.json');
-  const config = await configFile.json();
+  config = await configFile.json();
 
   churches = Object.values(config.churches);
 
@@ -167,7 +167,7 @@ function onDeleteAll() {
 
 async function onPrintMax() {
   processing.style.display = 'flex';
-  await generateNametagsPDF(nameArray);
+  await generateNametagsPDF(nameArray.splice(0, 24));
 
   // await generateNametagsPDF(nameArray.splice(0, 32));
   processing.style.display = 'none';
@@ -218,4 +218,22 @@ function createInfoListItem(index, info) {
   listItem.appendChild(deleteButton);
 
   return listItem;
+}
+
+function csvToArray(csvString, delimeter = ',') {
+  const rows = csvString.split('\n');
+  const array = rows.map((row) => {
+    const values = row.split(delimeter);
+    const object = {
+      id: Date.now(),
+      name1: values[0],
+      name2: values[1],
+      lodgeEN: values[3].trim(),
+      lodgeKR: config.lodges[values[3].trim()],
+      church: config.churches[values[2]],
+    };
+    console.log(object);
+    return object;
+  });
+  return array;
 }

@@ -29,13 +29,13 @@
     "Tent": "텐트"
   },
   "churches": {
-    "sv": "Southern Virginia",
-    "si": "Southern Illinois",
-    "ny": "New York",
-    "nj": "New Jersey",
-    "mi": "Michigan",
-    "ch": "Chicago",
-    "at": "Atlanta",
-    "dc": "Washington"
+    "남버지니아 교회": "Southern Virginia",
+    "남일리노이 교회": "Southern Illinois",
+    "뉴욕교회": "New York",
+    "뉴저지교회": "New Jersey",
+    "미시간 교회": "Michigan",
+    "시카고교회": "Chicago",
+    "아틀란타교회": "Atlanta",
+    "워싱턴교회": "Washington"
   }
 }
