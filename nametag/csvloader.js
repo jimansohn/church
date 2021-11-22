@@ -2,14 +2,20 @@
 
 // For Winter 2021, CSV has firstname,lastname, church, group, gender
 
+let config;
+async () => {
+  const configFile = await fetch('./config.json');
+  config = await configFile.json();
+};
+
 function csvToArray(csvString, delimeter = ',') {
   const rows = csvString.split('\n');
   const array = rows.map((row) => {
     const values = row.split(delimeter);
     const object = {
       id: Date.now(),
-      firstname: values[0],
-      lastname: values[1],
+      name1: values[0],
+      name2: values[1],
       ...parseChurchFromCSV(values[2]),
       ...parseGroupFromCSV(values[3], values[4]),
     };

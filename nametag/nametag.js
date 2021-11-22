@@ -1,17 +1,18 @@
-const startingX = 83;
-const startingY = 47;
+const startingX = 48;
+const startingY = 96;
 
 async function generateNametagsPDF(infos) {
+  console.log(infos);
   const pdf = html2pdf();
   const opt = {
     jsPDF: {
       unit: 'px',
-      orientation: 'l',
+      orientation: 'p',
       format: 'letter',
       hotfixes: ['px_scaling'],
     },
     html2canvas: {
-      scale: 6,
+      scale: 8,
     },
   };
 
@@ -19,8 +20,7 @@ async function generateNametagsPDF(infos) {
   file.className = 'pdf file';
 
   while (infos.length > 0) {
-    file.appendChild(generateFrontPage(infos.splice(0, 8)));
-    file.appendChild(generateBackPage());
+    file.appendChild(generateFrontPage(infos.splice(0, 4)));
   }
   await pdf.set(opt).from(file).save('NameTags.pdf');
 }
@@ -45,88 +45,61 @@ function generateFrontPage(infos) {
   return page;
 }
 
-function generateBackPage(offsetX = 0, offsetY = 0) {
-  const page = document.createElement('div');
-  page.className = 'page';
-
-  const grid = document.createElement('div');
-  grid.className = 'grid';
-  grid.style.position = 'absolute';
-  grid.style.left = `${startingX + offsetX}px`;
-  grid.style.top = `${startingY + offsetY}px`;
-
-  for (let i = 0; i < 8; i++) {
-    grid.appendChild(generateBackCard());
-  }
-
-  page.appendChild(grid);
-
-  return page;
-}
-
-function generateBackCard() {
-  const div = document.createElement('div');
-  div.className = 'card container back';
-
-  const en = document.createElement('div');
-  en.className = 'card back message';
-  en.innerText =
-    'This name tag will be reused for future retreat. Please return it before leaving.';
-
-  const kr = document.createElement('div');
-  kr.className = 'card back message';
-  kr.innerText = '다음 수련회에서 명찰을 재사용 하오니 꼭 반납 부탁드립니다.';
-
-  const sp = document.createElement('div');
-  sp.className = 'card back message';
-  sp.innerText = 'Por favor DEVUELVA el gafete para futuro uso.';
-
-  const ch = document.createElement('div');
-  ch.className = 'card back message';
-  ch.innerText =
-    '名牌标签套皮将会在每次培灵会反 复使用，请大家离开前退还名牌标 签套皮。多谢配合!';
-
-  div.appendChild(en);
-  div.appendChild(kr);
-  div.appendChild(sp);
-  div.appendChild(ch);
-
-  return div;
-}
-
 function generateSingleTag(info) {
+  console.log(info);
   const div = document.createElement('div');
   div.className = 'card container';
 
   const img = document.createElement('img');
   img.className = 'card img';
-  img.src = info.bgpath;
+  img.src = 'img/bg.png';
 
   const content = document.createElement('div');
   content.className = 'card content';
 
   const church = document.createElement('div');
   church.className = 'card church';
-  church.innerText = info.church;
+  const churcnName = info.church + ' Church';
+  church.innerText = churcnName.toUpperCase();
+
+  const lodge = document.createElement('div');
+  lodge.className = 'card lodge box';
+
+  const lodgeLogo = document.createElement('img');
+  lodgeLogo.className = 'card lodge logo';
+  lodgeLogo.src = 'img/lodge.png';
+
+  const lodgeEN = document.createElement('div');
+  lodgeEN.className = 'card lodge en';
+  lodgeEN.innerText = info.lodgeEN;
+
+  const lodgeKR = document.createElement('div');
+  lodgeKR.className = 'card lodge kr';
+  lodgeKR.innerText = info.lodgeKR;
 
   const name = document.createElement('div');
-  if (info.firstname.length > 10 || info.lastname.length > 10) {
-    name.className = 'card name long';
-  } else {
-    name.className = 'card name';
-  }
-  name.innerHTML = `<div>${info.firstname}</div><div>${info.lastname}</div>`;
+  name.className = 'card name';
 
-  const group = document.createElement('div');
-  group.className = 'card group';
-  group.innerText = info.group;
+  const nameEN = document.createElement('h2');
+  nameEN.className =
+    info.name1.length < 15 ? 'card name short' : 'card name long';
+  nameEN.innerText = info.name1;
 
-  content.appendChild(church);
-  content.appendChild(name);
-  content.appendChild(group);
+  const nameKR = document.createElement('h2');
+  nameKR.innerText = info.name2;
+  nameKR.className = 'card name short';
 
-  div.appendChild(img);
-  div.appendChild(content);
+  const retreat = document.createElement('div');
+  retreat.className = 'card retreat';
+  retreat.innerText = '2021 WINTER RETREAT';
+
+  lodge.append(lodgeLogo, lodgeEN, lodgeKR);
+
+  name.append(nameEN, nameKR, lodge);
+
+  content.append(church, name, retreat);
+
+  div.append(img, content);
 
   return div;
 }

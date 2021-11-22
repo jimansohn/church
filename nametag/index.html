@@ -5,48 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nametag Maker</title>
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="https://jimansohn.github.io/church/nametag/icons/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="https://jimansohn.github.io/church/nametag/icons/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="https://jimansohn.github.io/church/nametag/icons/favicon-16x16.png"
-    />
-    <link
-      rel="manifest"
-      href="https://jimansohn.github.io/church/nametag/icons/site.webmanifest"
-    />
-    <link
-      rel="mask-icon"
-      href="https://jimansohn.github.io/church/nametag/icons/safari-pinned-tab.svg"
-      color="#5bbad5"
-    />
-    <link
-      rel="shortcut icon"
-      href="https://jimansohn.github.io/church/nametag/icons/favicon.ico"
-    />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta
-      name="msapplication-config"
-      content="https://jimansohn.github.io/church/nametag/icons/browserconfig.xml"
-    />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" type="text/css" href="style.css" />
     <title>NametagMaker - Ji Man Sohn</title>
   </head>
@@ -57,21 +16,21 @@
 
     <form onsubmit="onSubmitNameTag(event)" class="container">
       <ul id="form-list">
-        <li id="firstname-input">
-          <h3>First Name</h3>
-          <input type="text" name="firstname" id="firstname" required />
+        <li id="name1-input">
+          <h3>English Name</h3>
+          <input type="text" name="name1" id="name1" required />
         </li>
-        <li id="lastname-input">
-          <h3>Last Name</h3>
-          <input type="text" name="lastname" id="lastname" required />
+        <li id="name2-input">
+          <h3>Korean Name</h3>
+          <input type="text" name="name2" id="name2" />
         </li>
         <li id="church-input">
           <h3>Church</h3>
           <ul id="church-radios"></ul>
         </li>
-        <li id="group-input">
-          <h3>Group</h3>
-          <ul id="group-radios"></ul>
+        <li id="lodge-input">
+          <h3>Lodge</h3>
+          <ul id="lodge-radios"></ul>
         </li>
         <li id="submit">
           <button type="submit">Submit</button>
@@ -84,7 +43,7 @@
           <li>#</li>
           <li>Name</li>
           <li>Church</li>
-          <li>Group</li>
+          <li>Lodge</li>
           <li>Delete</li>
         </ul>
       </div>

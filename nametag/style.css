@@ -1,3 +1,22 @@
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('fonts/NotoSansKR-Regular.otf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('fonts/NotoSansKR-Medium.otf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('fonts/NotoSansKR-Bold.otf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,7 +27,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'NotoSansKR';
   font-weight: 400;
   background-color: #d5dfeb;
   padding-top: 15px;
@@ -40,20 +59,20 @@ input[type='text'] {
   padding-left: 5px;
 }
 
-#firstname-input {
-  grid-area: firstname;
+#name1-input {
+  grid-area: name1;
 }
 
-#lastname-input {
-  grid-area: lastname;
+#name2-input {
+  grid-area: name2;
 }
 
 #church-input {
   grid-area: church;
 }
 
-#group-input {
-  grid-area: group;
+#lodge-input {
+  grid-area: lodge;
 }
 
 #submit {
@@ -65,11 +84,11 @@ input[type='text'] {
 #form-list {
   margin: 10px 10px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1.5fr 0.5fr;
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
-    'firstname church group .'
-    'lastname church group submit';
+    'name1 church lodge .'
+    'name2 church lodge submit';
 }
 
 label {
@@ -165,16 +184,16 @@ label {
 
 .grid {
   display: grid;
-  grid-template-columns: 221px 221px 221px 221px;
-  grid-template-rows: 360px 360px;
-  gap: 2px;
+  grid-template-columns: 384px 384px;
+  grid-template-rows: 288px 288px;
+  gap: 0px;
   position: absolute;
 }
 
 .card.container {
   margin: 0;
-  width: 221px;
-  height: 360px;
+  width: 384px;
+  height: 288px;
   padding: 0;
   position: relative;
   background: white;
@@ -192,49 +211,92 @@ label {
 }
 
 .card.img {
-  width: 221px;
-  height: 360px;
+  width: 384px;
+  height: 288px;
   position: absolute;
   left: 0;
   top: 0;
   z-index: 2;
 }
 .card.content {
-  width: 221px;
-  height: 200px;
-  margin-top: 60px;
-  margin-bottom: 100px;
+  width: 384px;
+  height: 288px;
+  margin: 0;
   position: absolute;
   left: 0;
   top: 0;
-  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   z-index: 3;
+  display: grid;
+  grid-template-rows: 55px 195px 38px;
+  color: rgba(40, 40, 40, 1);
+}
+
+.card.church {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 16px;
-  text-align: center;
-  color: black;
+  margin-left: 10px;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  font-weight: 500;
+  font-size: 1.2em;
+  color: white;
 }
 
 .card.name {
-  font-size: 2em;
-  font-weight: 700;
+  position: relative;
+}
+
+.card.lodge.box {
+  position: absolute;
+  left: 5px;
+  right: 0px;
+  top: 0px;
+  display: grid;
+  grid-template-columns: 35px auto;
+  grid-template-rows: 20px 20px;
+  grid-template-areas:
+    'logo lodgeKR'
+    'logo lodgeEN';
+  font-size: 1em;
+}
+
+.card.lodge.logo {
+  margin-top: 5px;
+  width: 30px;
+  height: 35px;
+  grid-area: logo;
+}
+
+.card.lodge.kr {
+  grid-area: lodgeKR;
+}
+.card.lodge.en {
+  grid-area: lodgeEN;
+}
+
+.card.name {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 
-.card.name > div {
-  text-align: center;
+.card.name.short {
+  font-size: 3.1em;
 }
 .card.name.long {
-  padding: 0px 10px;
-  font-size: 1.4em;
-  font-weight: 700;
+  font-size: 2.5em;
+}
+
+.card.retreat {
   display: flex;
-  flex-direction: column;
+  margin-left: 10px;
+  flex-direction: row;
   align-items: center;
+  font-weight: 700;
+  font-size: 0.8em;
+  color: white;
 }
