@@ -38,6 +38,16 @@
       </ul>
     </form>
     <div class="container">
+      <div id="name-list-control">
+        <input type="file" id="file-selector" hidden />
+        <button id="upload" onclick="onUpload()">Upload CSV</button>
+        <button id="delete-all" onclick="onDeleteAll()">Delete All</button>
+        <button id="print-max" onclick="onPrintMax()">Print Max</button>
+      </div>
+      <div class="notice">
+        * Due to the file size issue, you can only create a pdf with MAXIMUM 48
+        name tags each time.
+      </div>
       <div id="name-list-label" class="list label">
         <ul>
           <li>#</li>
@@ -48,16 +58,6 @@
         </ul>
       </div>
       <div id="name-list" class="main list"></div>
-      <div id="name-list-control">
-        <input type="file" id="file-selector" hidden />
-        <button id="upload" onclick="onUpload()">Upload CSV</button>
-        <button id="delete-all" onclick="onDeleteAll()">Delete All</button>
-        <button id="print-max" onclick="onPrintMax()">Print Max</button>
-      </div>
-      <div class="notice">
-        * Due to the file size issue, you can only create a pdf with MAXIMUM 32
-        name tags each time.
-      </div>
     </div>
     <div id="loading" class="processing container">
       <div class="processiing loader"></div>
@@ -69,7 +69,6 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
-    <script type="text/javascript" src="csvloader.js"></script>
     <script type="text/javascript" src="nametag.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </body>

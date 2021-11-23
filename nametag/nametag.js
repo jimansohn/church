@@ -68,13 +68,19 @@ function generateSingleTag(info) {
   lodgeLogo.className = 'card lodge logo';
   lodgeLogo.src = 'img/lodge.png';
 
-  const lodgeEN = document.createElement('div');
-  lodgeEN.className = 'card lodge en';
-  lodgeEN.innerText = info.lodgeEN;
+  lodge.append(lodgeLogo);
 
-  const lodgeKR = document.createElement('div');
-  lodgeKR.className = 'card lodge kr';
-  lodgeKR.innerText = info.lodgeKR;
+  if (info.lodgeEN != 'Hotel') {
+    const lodgeEN = document.createElement('div');
+    lodgeEN.className = 'card lodge en';
+    lodgeEN.innerText = info.lodgeEN;
+
+    const lodgeKR = document.createElement('div');
+    lodgeKR.className = 'card lodge kr';
+    lodgeKR.innerText = info.lodgeKR;
+
+    lodge.append(lodgeEN, lodgeKR);
+  }
 
   const name = document.createElement('div');
   name.className = 'card name';
@@ -91,8 +97,6 @@ function generateSingleTag(info) {
   const retreat = document.createElement('div');
   retreat.className = 'card retreat';
   retreat.innerText = '2021 WINTER RETREAT';
-
-  lodge.append(lodgeLogo, lodgeEN, lodgeKR);
 
   name.append(nameEN, nameKR, lodge);
 

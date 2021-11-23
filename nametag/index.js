@@ -1,4 +1,4 @@
-let lodges, lodgesMap, churches, nameArray, churchOther, config;
+let lodgesKR, lodgesEN, lodgesMap, churches, nameArray, churchOther, config;
 
 const name1 = document.getElementById('name1');
 const name2 = document.getElementById('name2');
@@ -17,10 +17,12 @@ async function initialize() {
 
   churches = Object.values(config.churches);
 
-  lodges = Object.keys(config.lodges);
+  lodgesKR = Object.keys(config.lodges);
+  lodgesEN = Object.values(config.lodges);
   lodgesMap = config.lodges;
+
   initializeRadios(churchRadios, churches, 'church');
-  initializeRadios(lodgeRadios, lodges, 'lodge');
+  initializeRadios(lodgeRadios, lodgesEN, 'lodge');
   appendOtherChurchRadio();
 
   const loadedNames = localStorage.getItem(NAME_LS_KEY);
@@ -108,8 +110,8 @@ function gatherFormInfo() {
     id: Date.now(),
     name1: name1.value,
     name2: name2.value,
-    lodgeEN: lodges[lodgeIndex],
-    lodgeKR: lodgesMap[lodges[lodgeIndex]],
+    lodgeKR: lodgesKR[lodgeIndex],
+    lodgeEN: lodgesEN[lodgeIndex],
     church: churches[churchIndex],
   };
 
@@ -167,7 +169,7 @@ function onDeleteAll() {
 
 async function onPrintMax() {
   processing.style.display = 'flex';
-  await generateNametagsPDF(nameArray.splice(0, 24));
+  await generateNametagsPDF(nameArray.splice(0, 48));
 
   // await generateNametagsPDF(nameArray.splice(0, 32));
   processing.style.display = 'none';
@@ -202,7 +204,7 @@ function createInfoListItem(index, info) {
 
   const lodge = document.createElement('li');
   lodge.class = 'lodge';
-  lodge.innerHTML = info.lodgeEN;
+  lodge.innerHTML = info.lodgeKR;
 
   const deleteButton = document.createElement('button');
   deleteButton.innerText = 'Delete';
@@ -228,8 +230,8 @@ function csvToArray(csvString, delimeter = ',') {
       id: Date.now(),
       name1: values[0],
       name2: values[1],
-      lodgeEN: values[3].trim(),
-      lodgeKR: config.lodges[values[3].trim()],
+      lodgeKR: values[3].trim(),
+      lodgeEN: config.lodges[values[3].trim()],
       church: config.churches[values[2]],
     };
     console.log(object);
