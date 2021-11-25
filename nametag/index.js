@@ -169,7 +169,7 @@ function onDeleteAll() {
 
 async function onPrintMax() {
   processing.style.display = 'flex';
-  await generateNametagsPDF(nameArray.splice(0, 48));
+  await generateNametagsPDF(nameArray.splice(0, 24));
 
   // await generateNametagsPDF(nameArray.splice(0, 32));
   processing.style.display = 'none';

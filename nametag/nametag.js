@@ -20,7 +20,7 @@ async function generateNametagsPDF(infos) {
   file.className = 'pdf file';
 
   while (infos.length > 0) {
-    file.appendChild(generateFrontPage(infos.splice(0, 6)));
+    file.appendChild(generateFrontPage(infos.splice(0, 3)));
   }
   await pdf.set(opt).from(file).save('NameTags.pdf');
 }
@@ -38,6 +38,7 @@ function generateFrontPage(infos) {
   infos.forEach((info) => {
     const card = generateSingleTag(info);
     grid.appendChild(card);
+    grid.appendChild(card.cloneNode(true));
   });
 
   page.appendChild(grid);
